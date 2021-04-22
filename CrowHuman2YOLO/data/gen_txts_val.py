@@ -125,13 +125,13 @@ def main():
     if INPUT_WIDTH % 32 != 0 or INPUT_HEIGHT % 32 != 0:
         raise SystemExit('ERROR: bad spec of input dim (%s)' % args.dim)
 
-    output_dir = Path('crowdhuman-%s' % args.dim)
+    output_dir = Path('crowdhuman-%s/val_set/labels/' % args.dim)
     if not output_dir.is_dir():
         raise SystemExit('ERROR: %s does not exist.' % output_dir.as_posix())
 
     rm_txts(output_dir)
     process('test', 'raw/annotation_val.odgt', output_dir)
-    process('train', 'raw/annotation_train.odgt', output_dir)
+    # process('train', 'raw/annotation_train.odgt', output_dir)
 
     with open('crowdhuman-%s.data' % args.dim, 'w') as f:
         f.write("""classes = 2
